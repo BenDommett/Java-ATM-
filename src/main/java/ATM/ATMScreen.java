@@ -64,7 +64,7 @@ public class ATMScreen  {
         button3.setText("3");
         button3.setMaxSize(maxSize , maxSize);
         button3.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button2);
+        buttonAction(button3);
 
         Button button4 = new Button();
         button4.setText("4");
