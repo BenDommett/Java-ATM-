@@ -102,8 +102,6 @@ public class ATMScreen  {
         button9.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
         buttonAction(button9);
 
-        // Action buttons
-
         Button enter = new Button();
         enter.setText("Enter");
         enter.setMaxSize(150, 60);
@@ -113,14 +111,11 @@ public class ATMScreen  {
         clear.setText("Clear");
         clear.setMaxSize(150 , 60);
         clear.setFont(new Font("Arial" , 20));
-        clearButton(clear);
 
         Button delete = new Button();
         delete.setText("Delete");
         delete.setMaxSize(150,60);
         delete.setFont(new Font("Arial" , 20));
-        // buttons action
-        daleteButton(delete);
 
         // the creation of the gridpain
 
@@ -238,21 +233,5 @@ public class ATMScreen  {
                 textFiled1.appendText(number);
             });
 
-    }
-
-    public void daleteButton(Button button){
-
-
-        button.setOnAction(e -> {
-            textFiled1.setText(textFiled1.getText().substring(0 , textFiled1.getText().length() - 1));
-        });
-    }
-
-    public void clearButton(Button button){
-
-
-        button.setOnAction(e -> {
-            textFiled1.setText(textFiled1.getText().substring(0 , textFiled1.getText().length() - textFiled1.getText().length()));
-        });
     }
 }
