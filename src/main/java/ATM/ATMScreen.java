@@ -18,9 +18,7 @@ public class ATMScreen  {
 
 
     // these are the buttons on the side of the atm screen for make option in menue
-    public void buttonsAcction(){
 
-    }
 
     TextField textFiled1 = new TextField();
     public Node textBoxForPin(){
@@ -108,6 +106,7 @@ public class ATMScreen  {
         enter.setText("Enter");
         enter.setMaxSize(150, 60);
         enter.setFont(new Font("Arial" , 20));
+        enterButton(enter);
 
         Button clear = new Button();
         clear.setText("Clear");
@@ -209,12 +208,17 @@ public class ATMScreen  {
         return gridPane;
 
     }
+    // Layout for the ATM screen
+    StackPane layout = new StackPane();
+    // this makes it so i can pass the same stage to the next secen so there isn't a new window opened, this passes it to the setupMain menu
+    private Stage primaryStage;
     // this is the setup of the screen
     public void setup(Stage stage) {
+        primaryStage = stage;
         stage.setTitle("ATM Screen");
 
-        // Layout for the ATM screen
-        StackPane layout = new StackPane();
+
+
 
         // Add number pad button to the layout
         layout.getChildren().add(textBoxForPin());
@@ -224,6 +228,26 @@ public class ATMScreen  {
         // Create the scene and set it on the stage
         Scene scene = new Scene(layout, 800, 600);
         stage.setScene(scene);
+        stage.show();
+    }
+    StackPane layoutMenu = new StackPane();
+    public void setupMenu(Stage stage) {
+
+
+        stage.setTitle("ATM Screen");
+
+        ATMMenuScreen menu =  new ATMMenuScreen();
+
+
+        // Add number pad button to the layout
+        layoutMenu.getChildren().add(menu. mainMenu());
+
+
+
+        // Create the scene and set it on the stage
+        Scene sceneManu = new Scene(layoutMenu, 800, 600);
+        stage.setScene(sceneManu);
+        stage.close();
         stage.show();
     }
 
@@ -252,6 +276,21 @@ public class ATMScreen  {
         button.setOnAction(e ->{
             textFiled1.setText(textFiled1.getText().substring(0, textFiled1.getText().length() - textFiled1.getText().length()));
         });
+
+    }
+
+    public void enterButton(Button button ){
+        ATMMenuScreen menu =  new ATMMenuScreen();
+
+        button.setOnAction(e -> {
+            layout.visibleProperty().set(false);
+
+            // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
+            setupMenu(primaryStage);
+
+
+        });
+
 
     }
 
