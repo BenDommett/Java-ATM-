@@ -1,5 +1,6 @@
 package ATM;
 
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -11,7 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.PasswordField;
 
 public class ATMScreen  {
 
@@ -230,26 +231,7 @@ public class ATMScreen  {
         stage.setScene(scene);
         stage.show();
     }
-    StackPane layoutMenu = new StackPane();
-    public void setupMenu(Stage stage) {
 
-
-        stage.setTitle("ATM Screen");
-
-        ATMMenuScreen menu =  new ATMMenuScreen();
-
-
-        // Add number pad button to the layout
-        layoutMenu.getChildren().add(menu. mainMenu());
-
-
-
-        // Create the scene and set it on the stage
-        Scene sceneManu = new Scene(layoutMenu, 800, 600);
-        stage.setScene(sceneManu);
-        stage.close();
-        stage.show();
-    }
 
     //creat a event hadler method, this will also use the labels of the buttions that will be converted in to a string and then
     //that will then print it in to the text box.
@@ -265,7 +247,7 @@ public class ATMScreen  {
 
     public void deleteButton(Button button){
 
-        button.setOnAction(e ->{
+        button.setOnAction(e ->  {
             textFiled1.setText(textFiled1.getText().substring(0, textFiled1.getText().length() - 1));
         });
 
@@ -273,20 +255,20 @@ public class ATMScreen  {
 
     public void clearButton(Button button){
 
-        button.setOnAction(e ->{
+        button.setOnAction(e -> {
             textFiled1.setText(textFiled1.getText().substring(0, textFiled1.getText().length() - textFiled1.getText().length()));
         });
 
     }
 
     public void enterButton(Button button ){
-        ATMMenuScreen menu =  new ATMMenuScreen();
+        ATMMenuScreen menu = new ATMMenuScreen();
 
         button.setOnAction(e -> {
             layout.visibleProperty().set(false);
 
             // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
-            setupMenu(primaryStage);
+            menu.setupMenu(primaryStage);
 
 
         });
