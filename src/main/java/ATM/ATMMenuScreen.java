@@ -18,12 +18,8 @@ import java.io.FileNotFoundException;
 public class ATMMenuScreen {
 
 
-    public Label mainMenu(){
-        Label label1  = new Label("new page ");
 
-        return label1;
-    }
-    double maxSize = 100;
+
     public GridPane  leftTriangleButton() {
         //TriangleButton leftbutton = new TriangleButton();
 
@@ -212,7 +208,7 @@ public class ATMMenuScreen {
 
 
     public void enterButton(Button button ){
-        ATMMenuScreen menu = new ATMMenuScreen();
+
 
         button.setOnAction(e -> {
             // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
