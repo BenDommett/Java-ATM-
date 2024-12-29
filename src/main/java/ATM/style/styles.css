@@ -1,4 +1,13 @@
-.image-only-button {
+.transparent-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+}
+
+.label {
+    -fx-font-size: 20px;
+    -fx-font-family: Arial;
+}
+
+.label-right-padding {
+    -fx-padding: 0 0 0 180; /* Padding for labels with right alignment */
 }

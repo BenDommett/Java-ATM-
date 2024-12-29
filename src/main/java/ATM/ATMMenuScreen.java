@@ -1,5 +1,6 @@
 package ATM;
 
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -7,90 +8,81 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
+
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
 
 
 public class ATMMenuScreen {
 
 
 
+    // Add a style class for custom styling - this will be need for a hilight on the button
+    //this method name had changed from TriangleButton() to MainMenuButtons()
+    public GridPane  MainMenuButtons() {
 
-    public GridPane  leftTriangleButton() {
-        //TriangleButton leftbutton = new TriangleButton();
 
-
-            // Create the button
-            Button buttonTopLeft = new Button();
-
+            // Start of buttonchassOutPage
+            Button buttonchassOutPage = new Button();
             // Set the graphic for the button , this is the button on the
-            buttonTopLeft.setGraphic(rightArrowButton());
-
-            buttonTopLeft.setStyle("-fx-background-color: transparent;  -fx-border-color: transparent;");
-
-            // Add a style class for custom styling
-
+            buttonchassOutPage.setGraphic(rightArrowButton());
+            //button style method
+            buttonStyle(buttonchassOutPage);
+            // Start of label
             Label chassOutPage = new Label("  Cash Out");
             chassOutPage.setGraphic(LabelArrowLeft());
-            chassOutPage.setFont(new Font("Arial", 20));
+            labelStyleWithNonePadding(chassOutPage);
+            // end of chassOutPage
 
 
+            //Start of Balancebutton
+            Button Balancebutton = new Button();
+            // Set the graphic for the button
+            Balancebutton.setGraphic(leftArrowButton());
+            // button style method
+            buttonStyle(Balancebutton);
 
-            // button on the top left
-            // Create the button
-            Button buttonTopRight = new Button();
-
-            // Set the graphic for the button , this is the button on the
-            buttonTopRight.setGraphic(leftArrowButton());
-
-            buttonTopRight.setStyle("-fx-background-color: transparent;  -fx-border-color: transparent;");
-
-            // Add a style class for custom styling - this will be need for a hilight on the button
-
+            // Start of label
             Label Balance = new Label("Balance");
             Balance.setGraphic(LabelArrowright());
-            Balance.setContentDisplay(javafx.scene.control.ContentDisplay.RIGHT);
-            Balance.setPadding(new Insets(0, 0, 0, 180));
-            Balance.setFont(new Font("Arial", 20));
+            // style method for the label
+            labelStyle(Balance);
+            // end of Balance
 
 
-
-
+            // Start account information
             Button accountInfromationButton = new Button();
             accountInfromationButton.setGraphic(rightArrowButton());
-
-            accountInfromationButton.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-
-
-
+            buttonStyle(accountInfromationButton);
+            //Start of label
             Label Account_Information = new Label("  Account Information");
             Account_Information.setGraphic(LabelArrowLeft());
-            Account_Information.setFont(new Font("Arial", 20));
+            labelStyleWithNonePadding(Account_Information);
+            // end of account information
 
-            // deposit
+            // Start deposit
             Button Deposit = new Button();
-
             Deposit.setGraphic(leftArrowButton());
-            Deposit.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+            //button method for the style
+            buttonStyle(Deposit);
 
-
-
+            //Start of label for the deposit
             Label depositlabel = new Label(" Deposit");
             depositlabel.setGraphic(LabelArrowright());
-            depositlabel.setContentDisplay(javafx.scene.control.ContentDisplay.RIGHT);
-            depositlabel.setPadding(new Insets(0, 0, 0, 180));
-            depositlabel.setFont(new Font("Arial", 20));
-
+            // style for the deposit label
+            labelStyle(depositlabel);
+            // end of the deposit
 
 
 
 
             // send the button and to the mainMenu
-            return mainMenu(buttonTopLeft , chassOutPage  , buttonTopRight, Balance, accountInfromationButton ,
+            return mainMenu(buttonchassOutPage , chassOutPage  , Balancebutton, Balance, accountInfromationButton ,
                     Account_Information , Deposit , depositlabel);
 
 
@@ -98,25 +90,45 @@ public class ATMMenuScreen {
 
     StackPane layoutMenu = new StackPane();
     public void setupMenu(Stage stage) {
+        try {
 
-
-        stage.setTitle("ATM Screen");
-        //TriangleButton leftbutton = new TriangleButton();
+            stage.setTitle("ATM Screen");
+            //TriangleButton leftbutton = new TriangleButton();
 
 
             // Add number pad button to the layout
-            layoutMenu.getChildren().add( leftTriangleButton());
+            layoutMenu.getChildren().add(  MainMenuButtons());
 
 
 
             // Create the scene and set it on the stage
 
             Scene sceneManu = new Scene(layoutMenu,  800, 600);
+            String cssFilePath = "C:/Users/bendo/IdeaProjects/Java-ATM-/src/main/java/ATM/style/styles.css";
+            File cssFile = new File(cssFilePath);
 
+            if (cssFile.exists()) {
+                sceneManu.getStylesheets().add(cssFile.toURI().toString());
+            } else {
+                System.err.println("CSS file not found: " + cssFilePath);
+            }
 
             stage.setScene(sceneManu);
 
             stage.show();
+
+        }catch (Exception e) {
+            // Handle the exception (e.g., log the error or use a placeholder image)
+            System.err.println("Image file not found: " + e.getMessage());
+            // Optionally, set a default graphic or leave it without one
+        }
+
+
+
+
+
+
+
     }
 
     public GridPane mainMenu(Button bOne, Label ChassoutPage , Button btwo, Label Balance, Button bThree, Label Account_informationL , Button bfour, Label deposit ){
@@ -285,4 +297,29 @@ public class ATMMenuScreen {
         return null;
 
     }
+
+    public void labelStyleWithNonePadding(Label label){
+
+        label.getStyleClass().add("label");
+
+
+
+    }
+
+    public void labelStyle(Label label){
+        label.getStyleClass().add("label-right-padding");
+        label.getStyleClass().add("label");
+        label.setContentDisplay(javafx.scene.control.ContentDisplay.RIGHT);
+
+
+    }
+
+    public void buttonStyle(Button button){
+        button.getStyleClass().add("transparent-button");
+
+        
+    }
+
+
+
 }
