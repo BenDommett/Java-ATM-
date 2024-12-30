@@ -256,7 +256,11 @@ public class ATMScreen  {
     public void deleteButton(Button button){
 
         button.setOnAction(e ->  {
-            passwordField1.setText(passwordField1.getText().substring(0, passwordField1.getText().length() - 1));
+
+            if(passwordField1.getLength() > 0 ){
+                passwordField1.setText(passwordField1.getText().substring(0, passwordField1.getText().length() - 1));
+            }
+
         });
 
     }
