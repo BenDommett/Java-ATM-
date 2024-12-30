@@ -217,12 +217,7 @@ public class ATMMenuScreen {
         RowConstraints row4 = new RowConstraints();
         row4 .setPrefHeight(80);
 
-        ColumnConstraints colum5 = new ColumnConstraints();
-        colum4.setPrefWidth(80);
 
-
-        RowConstraints row5 = new RowConstraints();
-        row4 .setPrefHeight(80);
 
 
         gridPane.getColumnConstraints().add(colum0);

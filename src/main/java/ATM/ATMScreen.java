@@ -21,19 +21,27 @@ public class ATMScreen  {
     // these are the buttons on the side of the atm screen for make option in menue
 
 
-    TextField textFiled1 = new TextField();
+    //TextField textFiled1 = new TextField();
+    PasswordField passwordField1 = new PasswordField();
     public Node textBoxForPin(){
         Label label1  = new Label("Pin : ");
 
 
         HBox hb = new HBox();
-        textFiled1.setPrefWidth(400);
-        textFiled1.setPrefHeight(50);
-        hb.getChildren().addAll(label1 , textFiled1);
+        passwordField1.setPrefWidth(400);
+        passwordField1.setPrefHeight(50);
+        hb.getChildren().addAll(label1 , passwordField1);
         //hb.setSpacing(10);
         hb.setAlignment(Pos.CENTER);
         // v2 moves the text box up
         hb.setPadding(new Insets(100 , 100 , 400 ,10));
+        int max = 4;
+        passwordField1.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > max) {
+                passwordField1.setText(oldValue); // Revert to the previous value if the new value exceeds 4 characters
+            }
+        });
+
         return hb;
     }
 
@@ -240,7 +248,7 @@ public class ATMScreen  {
 
             button.setOnAction(e ->{
                 String number = button.getText();
-                textFiled1.appendText(number);
+                passwordField1.appendText(number);
             });
 
     }
@@ -248,7 +256,7 @@ public class ATMScreen  {
     public void deleteButton(Button button){
 
         button.setOnAction(e ->  {
-            textFiled1.setText(textFiled1.getText().substring(0, textFiled1.getText().length() - 1));
+            passwordField1.setText(passwordField1.getText().substring(0, passwordField1.getText().length() - 1));
         });
 
     }
@@ -256,7 +264,7 @@ public class ATMScreen  {
     public void clearButton(Button button){
 
         button.setOnAction(e -> {
-            textFiled1.setText(textFiled1.getText().substring(0, textFiled1.getText().length() - textFiled1.getText().length()));
+            passwordField1.setText(passwordField1.getText().substring(0, passwordField1.getText().length() - passwordField1.getText().length()));
         });
 
     }
