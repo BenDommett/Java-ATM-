@@ -11,14 +11,17 @@ public class LogIn {
 
 
     public void pinChecker(PasswordField pin){
+        MergSort merg = new MergSort();
 
+        merg.sort(gettingPins());
     }
 
 
-    private void gettingPins(){
+    private ArrayList<String> gettingPins(){
+        ArrayList<String> pins = new ArrayList<String>();
         //String pinINString = pin.getText();
         File fileOfPins = new File("C:/Users/bendo/IdeaProjects/Java-ATM-/src/main/java/ATM/pinTestFile");
-        ArrayList<String> pins = new ArrayList<String>();
+
 
         try{
             Scanner scr = new Scanner(fileOfPins);
@@ -29,8 +32,13 @@ public class LogIn {
                 pins.add(temp);
             }
             scr.close();
+            return pins;
         }catch(FileNotFoundException e ){
             e.printStackTrace();
         }
+        return null;
+    }
+    private void arraySort(){
+
     }
 }
