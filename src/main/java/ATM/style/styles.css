@@ -1,6 +1,6 @@
 .transparent-button {
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
+    -fx-border-color: #555555; /* black */
 }
 
 .label {
@@ -10,4 +10,13 @@
 
 .label-right-padding {
     -fx-padding: 0 0 0 180; /* Padding for labels with right alignment */
+}
+
+.More-Services-padding {
+    -fx-padding: 0 0 0 135; /* Padding for labels with right alignment */
+}
+
+.button-arrows:hover {
+  -fx-background-color: #555555; /* black */
+
 }

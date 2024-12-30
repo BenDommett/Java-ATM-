@@ -78,12 +78,53 @@ public class ATMMenuScreen {
             labelStyle(depositlabel);
             // end of the deposit
 
+            //Start fastCash £100/ if the is less then a £100 in the count this button mybe deactivated
+            Button FastCashButton = new Button();
+            FastCashButton.setGraphic(rightArrowButton());
+            buttonStyle(FastCashButton);
+            // Start FastCash label
+            // we may make the verable to the amount in the account untill less than £5 in the account but the account cant be emptyed by the amount so £10 in the account it as low as it can be
+            Label FasCashLabel = new Label("  FastCash");
+            FasCashLabel.setGraphic(LabelArrowLeft());
+            labelStyleWithNonePadding(FasCashLabel);
+            //end of fastCash
+
+            // Start of More Services
+            Button moreSericesButton = new Button();
+            moreSericesButton.setGraphic(leftArrowButton());
+            buttonStyle(moreSericesButton);
+            //start of more service label.
+            Label MoreServiceLabel = new Label("More Service");
+            MoreServiceLabel.setGraphic(LabelArrowright());
+
+            labelStyleWithNonePadding(MoreServiceLabel);
+
+            // Start change pin
+            Button ChangePinButton = new Button();
+            ChangePinButton.setGraphic(rightArrowButton());
+            buttonStyle(ChangePinButton);
+            //Start of the Change pin label
+            Label ChangePinLabel = new Label("  change pin");
+            ChangePinLabel.setGraphic(LabelArrowLeft());
+            labelStyleWithNonePadding(ChangePinLabel);
+            //end of change pin
+
+            // start bill payment
+            Button billPaymentButton = new Button();
+            billPaymentButton.setGraphic(leftArrowButton());
+            buttonStyle(billPaymentButton);
+            //Start of bill payment label
+            Label billpaymentLabel = new Label("Bill Payment");
+            billpaymentLabel.setGraphic(LabelArrowright());
+            labelStyleWithNonePadding(billpaymentLabel);
 
 
 
             // send the button and to the mainMenu
             return mainMenu(buttonchassOutPage , chassOutPage  , Balancebutton, Balance, accountInfromationButton ,
-                    Account_Information , Deposit , depositlabel);
+                    Account_Information , Deposit , depositlabel , FastCashButton , FasCashLabel,
+                    moreSericesButton,MoreServiceLabel ,ChangePinButton , ChangePinLabel ,
+                    billPaymentButton , billpaymentLabel);
 
 
     }
@@ -97,9 +138,8 @@ public class ATMMenuScreen {
 
 
             // Add number pad button to the layout
-            layoutMenu.getChildren().add(  MainMenuButtons());
-
-
+            layoutMenu.getChildren().add( MainMenuButtons());
+            layoutMenu.getChildren().add(logOutButton());
 
             // Create the scene and set it on the stage
 
@@ -123,21 +163,25 @@ public class ATMMenuScreen {
             // Optionally, set a default graphic or leave it without one
         }
 
-
-
-
-
-
-
     }
 
-    public GridPane mainMenu(Button bOne, Label ChassoutPage , Button btwo, Label Balance, Button bThree, Label Account_informationL , Button bfour, Label deposit ){
+    public Button logOutButton(){
+        // Start logOut
+        Button logOutButton = new Button("Logout");
+        logOutButton.setGraphic(LabelArrowLeft());
+        logOutButton.setTranslateX(320);
+        logOutButton.setTranslateY(220);
+        // end of logOut button
+        return logOutButton;
+    }
+
+    public GridPane mainMenu(Button bOne, Label ChassoutPage , Button btwo, Label Balance, Button bThree, Label Account_informationL , Button bfour, Label deposit
+    , Button bfive , Label FastCash , Button bsix , Label MoreSErvies , Button bsevin ,
+                             Label changePinLabel , Button bEight , Label billpaymentLabel){
         // the creation of the gridpain
 
         GridPane gridPane = new GridPane();
 
-        // delete
-        gridPane.setGridLinesVisible(true);
 
         gridPane.setAlignment(Pos.CENTER);
 
@@ -159,7 +203,7 @@ public class ATMMenuScreen {
         colum2.setPrefWidth(50);
 
         RowConstraints row2 = new RowConstraints();
-        row2.setPrefHeight(100);
+        row2.setPrefHeight(80);
 
         ColumnConstraints colum3 = new ColumnConstraints();
         colum3.setPrefWidth(300);
@@ -173,10 +217,12 @@ public class ATMMenuScreen {
         RowConstraints row4 = new RowConstraints();
         row4 .setPrefHeight(80);
 
+        ColumnConstraints colum5 = new ColumnConstraints();
+        colum4.setPrefWidth(80);
 
 
-
-
+        RowConstraints row5 = new RowConstraints();
+        row4 .setPrefHeight(80);
 
 
         gridPane.getColumnConstraints().add(colum0);
@@ -195,6 +241,10 @@ public class ATMMenuScreen {
         gridPane.getRowConstraints().add(row4);
 
 
+
+
+
+
                           //  colum , row,
         gridPane.add(bOne, 0, 0, 1, 1);
 
@@ -211,6 +261,25 @@ public class ATMMenuScreen {
         gridPane.add(deposit , 3 ,1 ,1 , 1);
 
         gridPane.add(bfour , 4 , 1 ,1,1 );
+
+        gridPane.add(bfive, 0 , 2 ,1 ,1  );
+
+        gridPane.add(FastCash, 1 , 2 ,1 ,1 );
+
+        gridPane.add(MoreSErvies , 3 ,2 ,1 ,1 );
+
+        gridPane.add(bsix , 4 , 2 , 1 ,1 );
+
+        gridPane.add(bsevin , 0 , 3 ,1 ,1 );
+
+        gridPane.add(changePinLabel , 1 ,3 ,1,1);
+
+        gridPane.add(bEight , 4 , 3 , 1 ,1 );
+
+        gridPane.add(billpaymentLabel, 3 ,3 ,1, 1);
+
+
+
 
 
 
@@ -301,6 +370,10 @@ public class ATMMenuScreen {
     public void labelStyleWithNonePadding(Label label){
 
         label.getStyleClass().add("label");
+        if(label.getText().equals("More Service") || label.getText().equals("Bill Payment")){
+            label.setContentDisplay(javafx.scene.control.ContentDisplay.RIGHT);
+            label.getStyleClass().add("More-Services-padding");
+        }
 
 
 
@@ -316,8 +389,9 @@ public class ATMMenuScreen {
 
     public void buttonStyle(Button button){
         button.getStyleClass().add("transparent-button");
+        button.getStyleClass().add("button-arrows");
 
-        
+
     }
 
 
