@@ -6,7 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -264,6 +264,7 @@ public class ATMScreen  {
     public void clearButton(Button button){
 
         button.setOnAction(e -> {
+
             passwordField1.setText(passwordField1.getText().substring(0, passwordField1.getText().length() - passwordField1.getText().length()));
         });
 
@@ -273,10 +274,14 @@ public class ATMScreen  {
         ATMMenuScreen menu = new ATMMenuScreen();
 
         button.setOnAction(e -> {
-            layout.visibleProperty().set(false);
+
+            LogIn login = new LogIn();
+
+            login.pinChecker(passwordField1);
+            //layout.visibleProperty().set(false);
 
             // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
-            menu.setupMenu(primaryStage);
+            //menu.setupMenu(primaryStage);
 
 
         });
