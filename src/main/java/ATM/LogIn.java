@@ -16,12 +16,14 @@ public class LogIn {
         merg.sort(gettingPins());
     }
 
+    private  ArrayList<String> pins = new ArrayList<String>();
+    private void gettingPins(){
 
     private ArrayList<String> gettingPins(){
         ArrayList<String> pins = new ArrayList<String>();
         //String pinINString = pin.getText();
         File fileOfPins = new File("C:/Users/bendo/IdeaProjects/Java-ATM-/src/main/java/ATM/pinTestFile");
-
+        ArrayList<String> pins = new ArrayList<String>();
 
         try{
             Scanner scr = new Scanner(fileOfPins);
@@ -37,6 +39,9 @@ public class LogIn {
             e.printStackTrace();
         }
         return null;
+    }
+    private void arraySort(){
+
     }
     private void arraySort(){
 
