@@ -281,11 +281,15 @@ public class ATMScreen  {
 
             LogIn login = new LogIn();
 
-            login.pinChecker(passwordField1);
-            //layout.visibleProperty().set(false);
+            boolean found = login.pinChecker(passwordField1);
 
-            // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
-            //menu.setupMenu(primaryStage);
+            if(found){
+                layout.visibleProperty().set(false);
+
+                // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
+                menu.setupMenu(primaryStage);
+            }
+
 
 
         });

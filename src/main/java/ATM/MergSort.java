@@ -5,13 +5,14 @@ import java.util.ArrayList;
 public class MergSort {
 
 
-    public ArrayList<String> sort(ArrayList<String> unsortedArry){
+    public int[] sort(ArrayList<String> unsortedArry){
 
         int[] arr = new int[unsortedArry.size()];
         arr = forStringToIntaar(unsortedArry);
         int[] arrSorted = sort(arr, 0, arr.length - 1);
+
         ArrayList<String> sortedArry = fromIntegerToString(arrSorted);
-        return sortedArry;
+        return arrSorted;
     }
 
 
@@ -25,16 +26,18 @@ public class MergSort {
 
             arr[i] = tempNum;
 
-            System.out.println(arr[i]);
+
         }
-        System.out.println("unsored end");
+
 
         return arr;
 
     }
+    // this maybe needed later for when the pin chnage page is in use to make sure then new pin is not equal to the old one, will be changed
+    // as all the pins are not needed, this was also more for me making sure the array was sored properly.
     private ArrayList<String> fromIntegerToString(int[] sortedArr){
         ArrayList<String> sortedArray = new ArrayList<String>();
-        System.out.println("sorted start");
+
         for(int i = 0 ; i < sortedArr.length; i++){
             int tempNum = sortedArr[i];
             String temp  = Integer.toString(tempNum);
@@ -45,13 +48,8 @@ public class MergSort {
             }else{
                 sortedArray.add(temp);
             }
-
-
-
-
-            System.out.println(sortedArray.get(i));
         }
-        System.out.println("sorted end");
+
 
         return sortedArray;
 

@@ -10,20 +10,25 @@ import java.util.Scanner;
 public class LogIn {
 
 
-    public void pinChecker(PasswordField pin){
+    public boolean pinChecker(PasswordField pin){
         MergSort merg = new MergSort();
+        search ser = new search();
+       int[] sortedarr =  merg.sort(gettingPins());
 
-        merg.sort(gettingPins());
+       boolean found =   ser.search(sortedarr , pin , sortedarr.length - 1, 0);
+
+       return found;
     }
 
 
     private ArrayList<String> gettingPins(){
-        ArrayList<String> pins = new ArrayList<String>();
-        //String pinINString = pin.getText();
-        File fileOfPins = new File("C:/Users/bendo/IdeaProjects/Java-ATM-/src/main/java/ATM/pinTestFile");
+
 
 
         try{
+            ArrayList<String> pins = new ArrayList<String>();
+            //String pinINString = pin.getText();
+            File fileOfPins = new File("C:/Users/bendo/IdeaProjects/Java-ATM-/src/main/java/ATM/pinTestFile");
             Scanner scr = new Scanner(fileOfPins);
 
             while(scr.hasNext()){
