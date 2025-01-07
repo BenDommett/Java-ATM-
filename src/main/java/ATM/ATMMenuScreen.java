@@ -147,11 +147,9 @@ public class ATMMenuScreen {
             String cssFilePath = "C:/Users/bendo/IdeaProjects/Java-ATM-/src/main/java/ATM/style/styles.css";
             File cssFile = new File(cssFilePath);
 
-            if (cssFile.exists()) {
-                sceneManu.getStylesheets().add(cssFile.toURI().toString());
-            } else {
-                System.err.println("CSS file not found: " + cssFilePath);
-            }
+
+            sceneManu.getStylesheets().add(cssFile.toURI().toString());
+
 
             stage.setScene(sceneManu);
 

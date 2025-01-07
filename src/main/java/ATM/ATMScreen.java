@@ -14,9 +14,18 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 
+import java.io.File;
+
 public class ATMScreen  {
 
 
+
+    public Label failLogin(){
+        Label fail = new Label("login Does not exist");
+
+        fail.getStyleClass().add("label-Fail-login");
+        return fail;
+    }
 
     // these are the buttons on the side of the atm screen for make option in menue
 
@@ -223,21 +232,29 @@ public class ATMScreen  {
     private Stage primaryStage;
     // this is the setup of the screen
     public void setup(Stage stage) {
-        primaryStage = stage;
-        stage.setTitle("ATM Screen");
+        try{
+            String cssFilePath = "C:/Users/bendo/IdeaProjects/Java-ATM-/src/main/java/ATM/style/styles.css";
+            File cssFile = new File(cssFilePath);
+            primaryStage = stage;
+            stage.setTitle("ATM Screen");
+            layout.getStylesheets().add(cssFile.toURI().toString());
 
 
 
+            // Add number pad button to the layout
+            layout.getChildren().add(textBoxForPin());
+            layout.getChildren().add(numberPad());
 
-        // Add number pad button to the layout
-        layout.getChildren().add(textBoxForPin());
-        layout.getChildren().add(numberPad());
 
+            // Create the scene and set it on the stage
+            Scene scene = new Scene(layout, 800, 600);
+            stage.setScene(scene);
+            stage.show();
 
-        // Create the scene and set it on the stage
-        Scene scene = new Scene(layout, 800, 600);
-        stage.setScene(scene);
-        stage.show();
+        }catch(Exception e){
+
+        }
+
     }
 
 
@@ -278,17 +295,24 @@ public class ATMScreen  {
         ATMMenuScreen menu = new ATMMenuScreen();
 
         button.setOnAction(e -> {
+            if ( passwordField1.getLength() != 0){
+                LogIn login = new LogIn();
+                boolean found = login.pinChecker(passwordField1);
 
-            LogIn login = new LogIn();
+                if(found){
+                    layout.visibleProperty().set(false);
 
-            boolean found = login.pinChecker(passwordField1);
-
-            if(found){
-                layout.visibleProperty().set(false);
-
-                // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
-                menu.setupMenu(primaryStage);
+                    // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
+                    menu.setupMenu(primaryStage);
+                }
+            }else{
+                //layout.visibleProperty().set(true);
+                layout.getChildren().add(failLogin());
+                // this reason these have been added here to is due to the buttons no longer working after the incorrect password
+                layout.getChildren().add(textBoxForPin());
+                layout.getChildren().add(numberPad());
             }
+
 
 
 
