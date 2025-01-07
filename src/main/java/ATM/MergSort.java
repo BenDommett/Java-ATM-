@@ -7,11 +7,11 @@ public class MergSort {
 
     public int[] sort(ArrayList<String> unsortedArry){
 
-        int[] arr = new int[unsortedArry.size()];
-        arr = forStringToIntaar(unsortedArry);
+
+        int[] arr = forStringToIntaar(unsortedArry);
         int[] arrSorted = sort(arr, 0, arr.length - 1);
 
-        ArrayList<String> sortedArry = fromIntegerToString(arrSorted);
+
         return arrSorted;
     }
 

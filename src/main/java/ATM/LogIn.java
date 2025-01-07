@@ -15,7 +15,7 @@ public class LogIn {
         search ser = new search();
        int[] sortedarr =  merg.sort(gettingPins());
 
-       boolean found =   ser.search(sortedarr , pin , sortedarr.length - 1, 0);
+       boolean found =   ser.checking(sortedarr , pin , sortedarr.length - 1, 0);
 
        return found;
     }

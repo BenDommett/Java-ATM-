@@ -2,11 +2,11 @@ package ATM;
 
 import javafx.scene.control.PasswordField;
 
-import java.util.ArrayList;
+
 
 public class search {
 
-    public Boolean search(int[] arr , PasswordField loginInput , int x , int l){
+    public Boolean checking(int[] arr , PasswordField loginInput , int x , int l){
 
 
         String temp = loginInput.getText();
