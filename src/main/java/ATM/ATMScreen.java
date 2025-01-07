@@ -20,10 +20,16 @@ public class ATMScreen  {
 
 
 
-    public Label failLogin(){
-        Label fail = new Label("login Does not exist");
+    public Label Loginnotfound(){
+        Label fail = new Label("Login does not exist");
 
         fail.getStyleClass().add("label-Fail-login");
+        return fail;
+    }
+    public Label noPinEntered(){
+        Label fail = new Label("no Pin entered or incomplete pin ");
+
+        fail.getStyleClass().add("label-noPin-login");
         return fail;
     }
 
@@ -58,84 +64,44 @@ public class ATMScreen  {
     double maxSize = 100;
     // number pad for entering pin and money ammounts
     public GridPane numberPad(){
-        Button button0 = new Button();
-        button0.setText("0");
-        button0.setMaxSize(maxSize, maxSize);
-        button0.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button0);
+        Button[] arr = new Button[10];
+        for(int i = 0; i < 10; i++){
+            Button button = new Button();
 
-        Button button1 = new Button();
-        button1.setText("1");
-        button1.setMaxSize(maxSize, maxSize);
-        button1.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button1);
+            String temp = Integer.toString(i);
+            button.setText(temp);
+            button.getStyleClass().add("number-pad");
+            //creat a event hadler method, this will also use the labels of the buttions that
+            // will be converted in to a string and then
+            //that will then print it in to the text box.
+            button.setOnAction(e ->  {
+                    String number = button.getText();
+                    passwordField1.appendText(number);
 
-        Button button2 = new Button();
-        button2.setText("2");
-        button2.setMaxSize(maxSize, maxSize);
-        button2.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button2);
 
-        Button button3 = new Button();
-        button3.setText("3");
-        button3.setMaxSize(maxSize , maxSize);
-        button3.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button3);
+            });
+            button.setMaxSize(maxSize, maxSize);
+            if(button.getText().equals("0"))arr[arr.length - 1] = button;
+            else arr[i - 1] = button;
 
-        Button button4 = new Button();
-        button4.setText("4");
-        button4.setMaxSize(maxSize , maxSize);
-        button4.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button4);
+        }
 
-        Button button5 = new Button();
-        button5.setText("5");
-        button5.setMaxSize(maxSize , maxSize);
-        button5.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button5);
-
-        Button button6 = new Button();
-        button6.setText("6");
-        button6.setMaxSize(maxSize , maxSize);
-        button6.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button6);
-
-        Button button7 = new Button();
-        button7.setText("7");
-        button7.setMaxSize(maxSize , maxSize);
-        button7.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button7);
-
-        Button button8 = new Button();
-        button8.setText("8");
-        button8.setMaxSize(maxSize , maxSize);
-        button8.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button8);
-
-        Button button9 = new Button();
-        button9.setText("9");
-        button9.setMaxSize(maxSize , maxSize);
-        button9.setFont(Font.font("Arial", FontWeight.BOLD , 20 ));
-        buttonAction(button9);
 
         // these are the buttons on the right and side delete, clear and enter
 
-        Button enter = new Button();
-        enter.setText("Enter");
-        enter.setMaxSize(150, 60);
-        enter.setFont(new Font("Arial" , 20));
+        Button enter = new Button("Enter");
+
+        buttonStyle(enter);
         enterButton(enter);
 
-        Button clear = new Button();
-        clear.setText("Clear");
-        clear.setMaxSize(150 , 60);
-        clear.setFont(new Font("Arial" , 20));
+        Button clear = new Button("Clear");
+
+        buttonStyle(clear);
         clearButton(clear);
 
-        Button delete = new Button();
-        delete.setText("Delete");
-        delete.setMaxSize(150,60);
-        delete.setFont(new Font("Arial" , 20));
+        Button delete = new Button("Delete");
+
+        buttonStyle(delete);
         deleteButton(delete);
 
         // the creation of the gridpain
@@ -146,7 +112,7 @@ public class ATMScreen  {
         //gridPane.setGridLinesVisible(true);
 
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.setPadding(new Insets(200 , 10 , 10 ,10));
+        gridPane.setPadding(new Insets(-300 , 10 , 0 ,0));
 
         ColumnConstraints colum0 = new ColumnConstraints();
         colum0.setPrefWidth(80);
@@ -194,27 +160,21 @@ public class ATMScreen  {
 
         gridPane.getColumnConstraints().add(colum5);
 
-        gridPane.add(button1, 0, 0, 1, 1);
-
-        gridPane.add(button2, 1, 0, 1, 1);
-
-        gridPane.add(button3, 2, 0, 1, 1);
-
-        gridPane.add(button4, 0, 1, 1, 1);
-
-        gridPane.add(button5, 1, 1, 1, 1);
-
-        gridPane.add(button6, 2, 1, 1, 1);
-
-        gridPane.add(button7, 0 , 2 , 1 ,  1);
-
-        gridPane.add(button8, 1 , 2 , 1 ,  1);
-
-        gridPane.add(button9, 2 , 2 , 1 ,  1);
-
-        gridPane.add(button0, 1, 3 , 1 ,  1);
 
 
+        int row = 0;
+        int col = 0;
+
+        for(int x = 0; x < arr.length ; x++){
+            row = x / 3;
+            col = x % 3;
+            if(x == 9 ){
+                gridPane.add(arr[x], 1, 3 , 1 ,  1);
+            }else{
+                gridPane.add(arr[x], col , row , 1 ,1);
+            }
+
+        }
 
         gridPane.add(clear, 5, 0 , 4 ,  1);
 
@@ -227,8 +187,9 @@ public class ATMScreen  {
 
     }
     // Layout for the ATM screen
-    StackPane layout = new StackPane();
-    // this makes it so i can pass the same stage to the next secen so there isn't a new window opened, this passes it to the setupMain menu
+    VBox layout = new VBox();
+    // this makes it so i can pass the same stage to the next secen so there isn't
+    // a new window opened, this passes it to the setupMain menu
     private Stage primaryStage;
     // this is the setup of the screen
     public void setup(Stage stage) {
@@ -258,18 +219,6 @@ public class ATMScreen  {
     }
 
 
-    //creat a event hadler method, this will also use the labels of the buttions that will be converted in to a string and then
-    //that will then print it in to the text box.
-
-    public void buttonAction(Button button){
-
-            button.setOnAction(e ->{
-                String number = button.getText();
-                passwordField1.appendText(number);
-            });
-
-    }
-
     public void deleteButton(Button button){
 
         button.setOnAction(e ->  {
@@ -279,7 +228,6 @@ public class ATMScreen  {
             }
 
         });
-
     }
 
     public void clearButton(Button button){
@@ -288,37 +236,42 @@ public class ATMScreen  {
 
             passwordField1.setText(passwordField1.getText().substring(0, passwordField1.getText().length() - passwordField1.getText().length()));
         });
-
     }
 
     public void enterButton(Button button ){
         ATMMenuScreen menu = new ATMMenuScreen();
+        Label messageOne = Loginnotfound();
+        Label messageTwo = noPinEntered();
 
         button.setOnAction(e -> {
-            if ( passwordField1.getLength() != 0){
+            layout.getChildren().remove(messageTwo);
+            layout.getChildren().remove(messageOne);
+
+            if ( passwordField1.getLength() != 0 && passwordField1.getLength() == 4){
                 LogIn login = new LogIn();
                 boolean found = login.pinChecker(passwordField1);
 
                 if(found){
                     layout.visibleProperty().set(false);
-
                     // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
                     menu.setupMenu(primaryStage);
+                }else{
+                    //layout.visibleProperty().set(true);
+                    layout.getChildren().add(0, messageOne);
+                    // this reason these have been added here to is due to the buttons no longer working after the incorrect password
                 }
             }else{
-                //layout.visibleProperty().set(true);
-                layout.getChildren().add(failLogin());
                 // this reason these have been added here to is due to the buttons no longer working after the incorrect password
-                layout.getChildren().add(textBoxForPin());
-                layout.getChildren().add(numberPad());
+                layout.getChildren().add(0, messageTwo);
             }
-
-
-
 
         });
 
 
+    }
+    private void buttonStyle(Button button){
+        button.getStyleClass().add("side-numpad-buttons");
+        button.setMaxSize(150 , 60);
     }
 
 

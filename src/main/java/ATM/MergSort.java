@@ -19,7 +19,7 @@ public class MergSort {
     private int[] forStringToIntaar(ArrayList<String> unsortedArry){
 
         int[] arr = new int[unsortedArry.size()];
-        System.out.println("unsored start");
+
         for(int i = 0 ; i < arr.length; i++){
             String temp = unsortedArry.get(i);
             int tempNum = Integer.parseInt(temp);

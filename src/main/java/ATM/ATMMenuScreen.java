@@ -129,10 +129,11 @@ public class ATMMenuScreen {
 
     }
 
-    StackPane layoutMenu = new StackPane();
+    VBox layoutMenu = new VBox();
+    private Stage primaryStage;
     public void setupMenu(Stage stage) {
         try {
-
+             primaryStage = stage;
             stage.setTitle("ATM Screen");
             //TriangleButton leftbutton = new TriangleButton();
 
@@ -170,6 +171,7 @@ public class ATMMenuScreen {
         logOutButton.setTranslateX(320);
         logOutButton.setTranslateY(220);
         // end of logOut button
+        logoutButton(logOutButton);
         return logOutButton;
     }
 
@@ -281,11 +283,13 @@ public class ATMMenuScreen {
 
 
 
-    public void enterButton(Button button ){
+    public void logoutButton(Button button ){
 
 
         button.setOnAction(e -> {
-            // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
+            ATMScreen logout = new ATMScreen();
+
+            logout.setup(primaryStage);
 
         });
 
