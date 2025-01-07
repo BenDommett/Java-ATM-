@@ -20,10 +20,16 @@ public class ATMScreen  {
 
 
 
-    public Label failLogin(){
-        Label fail = new Label("login Does not exist");
+    public Label Loginnotfound(){
+        Label fail = new Label("Login does not exist");
 
         fail.getStyleClass().add("label-Fail-login");
+        return fail;
+    }
+    public Label noPinEntered(){
+        Label fail = new Label("no Pin entered or incomplete pin ");
+
+        fail.getStyleClass().add("label-noPin-login");
         return fail;
     }
 
@@ -295,7 +301,7 @@ public class ATMScreen  {
         ATMMenuScreen menu = new ATMMenuScreen();
 
         button.setOnAction(e -> {
-            if ( passwordField1.getLength() != 0){
+            if ( passwordField1.getLength() != 0 && passwordField1.getLength() == 4){
                 LogIn login = new LogIn();
                 boolean found = login.pinChecker(passwordField1);
 
@@ -304,10 +310,16 @@ public class ATMScreen  {
 
                     // this is where the primaryStage = stage, which means the origanle stage from setup is being passed to menuset up
                     menu.setupMenu(primaryStage);
+                }else{
+                    //layout.visibleProperty().set(true);
+                    layout.getChildren().add(Loginnotfound());
+                    // this reason these have been added here to is due to the buttons no longer working after the incorrect password
+                    layout.getChildren().add(textBoxForPin());
+                    layout.getChildren().add(numberPad());
                 }
             }else{
                 //layout.visibleProperty().set(true);
-                layout.getChildren().add(failLogin());
+                layout.getChildren().add(noPinEntered());
                 // this reason these have been added here to is due to the buttons no longer working after the incorrect password
                 layout.getChildren().add(textBoxForPin());
                 layout.getChildren().add(numberPad());
