@@ -248,6 +248,7 @@ public class ATMScreen  {
             layout.getChildren().remove(messageOne);
 
             if ( passwordField1.getLength() != 0 && passwordField1.getLength() == 4){
+            if ( passwordField1.getLength() != 0 && passwordField1.getLength() == 4){
                 LogIn login = new LogIn();
                 boolean found = login.pinChecker(passwordField1);
 
@@ -263,7 +264,23 @@ public class ATMScreen  {
             }else{
                 // this reason these have been added here to is due to the buttons no longer working after the incorrect password
                 layout.getChildren().add(0, messageTwo);
+                }else{
+                    //layout.visibleProperty().set(true);
+                    layout.getChildren().add(Loginnotfound());
+                    // this reason these have been added here to is due to the buttons no longer working after the incorrect password
+                    layout.getChildren().add(textBoxForPin());
+                    layout.getChildren().add(numberPad());
+                }
+            }else{
+                //layout.visibleProperty().set(true);
+                layout.getChildren().add(noPinEntered());
+                // this reason these have been added here to is due to the buttons no longer working after the incorrect password
+                layout.getChildren().add(textBoxForPin());
+                layout.getChildren().add(numberPad());
             }
+
+
+
 
         });
 

@@ -131,6 +131,8 @@ public class ATMMenuScreen {
 
     VBox layoutMenu = new VBox();
     private Stage primaryStage;
+
+
     public void setupMenu(Stage stage) {
         try {
              primaryStage = stage;
@@ -170,8 +172,9 @@ public class ATMMenuScreen {
         logOutButton.setGraphic(LabelArrowLeft());
         logOutButton.setTranslateX(320);
         logOutButton.setTranslateY(220);
-        // end of logOut button
         logoutButton(logOutButton);
+        // end of logOut button
+
         return logOutButton;
     }
 
