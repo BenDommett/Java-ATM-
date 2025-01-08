@@ -41,8 +41,3 @@
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
-.label-noPin-login{
-    -fx-text-fill: red;
-    -fx-padding: 0 120 400 0;
-    -fx-font-weight: bold;
-}
