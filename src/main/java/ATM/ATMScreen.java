@@ -273,7 +273,7 @@ public class ATMScreen  {
 
     }
     private void buttonStyle(Button button){
-        button.getStyleClass().add("side-numpad-buttons");
+        button.getStyleClass().add("number-pad");
         button.setMaxSize(150 , 60);
     }
 

@@ -25,19 +25,11 @@
     -fx-padding: 0 0 -120 180;
     -fx-font-weight: bold;
 }
-.label-noPin-login{
-    -fx-text-fill: red;
-    -fx-padding: 0 0 -120 180;
-    -fx-font-weight: bold;
-}
+
 .number-pad{
     -fx-font-family: Arial;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 
 }
-.side-numpad-buttons{
-    -fx-font-family: Arial;
-    -fx-font-weight: bold;
-    -fx-font-size: 20px;
-}
+
